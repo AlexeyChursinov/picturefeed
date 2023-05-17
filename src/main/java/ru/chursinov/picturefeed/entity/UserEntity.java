@@ -17,7 +17,7 @@ import java.util.*;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
@@ -44,7 +44,7 @@ public class UserEntity {
 
     @ElementCollection(targetClass = ERole.class)
     @CollectionTable(name = "user_role",
-    joinColumns = @JoinColumn("user_id"))
+    joinColumns = @JoinColumn(name = "user_id"))
     Set<ERole> role = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
