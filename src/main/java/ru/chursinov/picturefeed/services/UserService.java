@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.chursinov.picturefeed.entity.UserEntity;
 import ru.chursinov.picturefeed.entity.enums.ERole;
 import ru.chursinov.picturefeed.exceptions.UserExistException;
-import ru.chursinov.picturefeed.payload.request.SignUpRequest;
+import ru.chursinov.picturefeed.payload.request.SignupRequest;
 import ru.chursinov.picturefeed.repository.UserRepository;
 
 @Service
@@ -23,14 +23,13 @@ public class UserService {
     BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
-    public UserEntity createUser(SignUpRequest userIn) {
-        UserEntity user = UserEntity.builder()
-                .email(userIn.getEmail())
-                .name(userIn.getFirstname())
-                .lastname(userIn.getLastname())
-                .username(userIn.getUsername())
-                .password(passwordEncoder.encode(userIn.getPassword()))
-                .build();
+    public UserEntity createUser(SignupRequest userIn) {
+        UserEntity user = new UserEntity();
+        user.setEmail(userIn.getEmail());
+        user.setName(userIn.getFirstname());
+        user.setLastname(userIn.getLastname());
+        user.setUsername(userIn.getUsername());
+        user.setPassword(passwordEncoder.encode(userIn.getPassword()));
         user.getRole().add(ERole.ROLE_USER);
 
         try {

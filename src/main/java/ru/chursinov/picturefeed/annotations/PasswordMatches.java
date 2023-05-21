@@ -1,6 +1,5 @@
 package ru.chursinov.picturefeed.annotations;
 
-import ru.chursinov.picturefeed.validations.EmailValidator;
 import ru.chursinov.picturefeed.validations.PasswordMatchesValidator;
 
 import javax.validation.Constraint;
@@ -16,5 +15,6 @@ public @interface PasswordMatches {
 
     Class<?>[] groups() default{};
 
-    Class<? extends Payload>[] payload() default{};
+    Class<? extends Payload>[] payload() default {};
 }
+
