@@ -25,10 +25,10 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false)
+    @Column(unique = true, updatable = false)
     String username;
 
-    @Column(unique = true, updatable = false)
+    @Column(nullable = false)
     String name;
 
     @Column(nullable = false)
