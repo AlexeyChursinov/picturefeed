@@ -1,6 +1,7 @@
 package ru.chursinov.picturefeed.dto;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Data
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PostDTO {
 

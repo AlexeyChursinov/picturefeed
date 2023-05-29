@@ -14,7 +14,6 @@ import ru.chursinov.picturefeed.entity.PostEntity;
 import ru.chursinov.picturefeed.entity.UserEntity;
 import ru.chursinov.picturefeed.exceptions.ImageNotFoundException;
 import ru.chursinov.picturefeed.repository.ImageRepository;
-import ru.chursinov.picturefeed.repository.PostRepository;
 import ru.chursinov.picturefeed.repository.UserRepository;
 
 import java.io.ByteArrayOutputStream;

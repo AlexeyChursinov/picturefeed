@@ -71,4 +71,9 @@ public class UserService {
 
     }
 
+    @Transactional
+    public UserEntity getUserById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
 }
