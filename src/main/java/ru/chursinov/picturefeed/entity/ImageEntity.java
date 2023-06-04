@@ -3,6 +3,7 @@ package ru.chursinov.picturefeed.entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import net.minidev.json.annotate.JsonIgnore;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -24,6 +25,7 @@ public class ImageEntity {
     String name;
 
     @Lob
+    @Type(type = "org.hibernate.type.BinaryType")
     @Column(columnDefinition = "bytea")
     byte[] imageBytes;
 

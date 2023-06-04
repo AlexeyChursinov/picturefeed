@@ -20,7 +20,6 @@ public class UserDTO {
     @NotEmpty
     String lastname;
 
-    @NotEmpty
     String username;
 
     String bio;

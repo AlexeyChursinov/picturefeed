@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 import ru.chursinov.picturefeed.entity.ImageEntity;
 import ru.chursinov.picturefeed.payload.response.MessageResponse;
@@ -36,10 +37,16 @@ public class ImageController {
     @PostMapping("/{postId}/upload")
     public ResponseEntity<MessageResponse> uploadImageToPost(@PathVariable("postId") String postId,
                                                              @RequestParam("file") MultipartFile file,
-                                                             Principal principal) throws IOException {
-        imageUploadService.uploadImageToPost(file, principal, Long.parseLong(postId));
-        return ResponseEntity.ok(new MessageResponse("Image Uploaded Successfully"));
+                                                             Principal principal) {
+        try {
+            imageUploadService.uploadImageToPost(file, principal, Long.parseLong(postId));
+            return ResponseEntity.ok(new MessageResponse("Image Uploaded Successfully"));
+        } catch (Exception e) {
+            log.error("Error occurred: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new MessageResponse(e.getMessage()));
+        }
     }
+
 
     @GetMapping("/profileImage")
     public ResponseEntity<ImageEntity> getImageForUser(Principal principal) {
